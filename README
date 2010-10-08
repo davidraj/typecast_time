@@ -1,0 +1,29 @@
+TypecastTime
+============
+
+In a web application its necessary to save epoch time in database and show the same time in human readable format in view page.
+But this is taking huge effort to convert the time to the desired format. This plugin simplifies that effort and simplifies the reading and writing of epoch time.
+Below example helps us to understand better
+
+
+Example
+=======
+
+Lets assume that we have 2 different epoch time in our coupons table. for example start_date and end_date
+
+
+Class Coupon < ActiveRecord::Base
+typecast_time :start_time, end_time, :format => ["%d", " ", "%b", " ", "%y", " ", "%I", ":", "%M", " ", "%p"]
+end
+
+The default format is ["%d", " ", "%b", " ", "%y"]
+
+When you need the orginal epoch time in some place of your code then use the following method to get the orginal epoch time
+
+start_time_before_typecast_time("start_time).to_i
+
+So with this you can safely save your epoch time in db and show the readable format in html view page.
+
+Any suggestions to this plugin please write to davidraj.samuel@gmail.com
+
+Copyright (c) 2010 [David Raj], released under the MIT license
